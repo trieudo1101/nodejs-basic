@@ -1,6 +1,7 @@
 {
   "name": "project-basic",
   "version": "1.0.0",
+  "type": "module",
   "description": "",
   "main": "server.js",
   "scripts": {
@@ -11,14 +12,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@elastic/elasticsearch": "^8.16.2",
     "dotenv": "^16.4.5",
     "esm": "^3.2.25",
     "express": "^4.21.1",
     "joi": "^17.13.3",
-    "morgan": "^1.10.0",
     "mysql2": "^3.11.4",
-    "sequelize": "^6.37.5",
-    "sequelize-cli": "^6.6.2",
     "winston": "^3.17.0"
   },
   "devDependencies": {
