@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css">
+    <title> Main app</title>
+</head>
+
+<body data-is-loading="<%= isLoading %>">
+    <div class="app-layout">
+        <div class="menu" id="menu">
+            <%- include('./layouts/side-bar') %>
+        </div>
+        <div class="content" id="content">
+            <div class="header">
+                <%- include('./layouts/header') %>
+            </div>
+            <div class="main-content" id="main-content">
+                <div class="spinner" id="loading-spinner">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+                <div class="content-body" id="content-body" style="display: none;">
+                    <%- include(body, { data }) %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggleSidebar = document.getElementById('toggleSidebar');
+            const sidebar = document.getElementById('sidebar');
+
+            toggleSidebar.addEventListener('click', () => {
+                sidebar.classList.toggle('open');
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const sidebar = document.getElementById('sidebar');
+            const menu = document.getElementById('menu');
+            const content = document.getElementById('content');
+            const toggleButton = document.getElementById('toggleSidebar');
+
+            toggleButton.addEventListener('click', () => {
+                sidebar.classList.toggle('collapsed');
+                menu.classList.toggle('collapsed');
+                content.classList.toggle('expanded');
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const spinner = document.getElementById("loading-spinner");
+            const contentBody = document.getElementById("content-body");
+
+            const isLoading = JSON.parse(document.body.dataset.isLoading);
+            console.log(isLoading);
+
+            if (isLoading) {
+                spinner.style.display = "block";
+                contentBody.style.display = "none";
+            } else {
+                spinner.style.display = "none";
+                contentBody.style.display = "block";
+            }
+        });
+    </script>
+
+</body>
+
+</html>

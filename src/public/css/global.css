@@ -1,0 +1,35 @@
+/* Light mode (default) */
+body.light-mode {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+body.light-mode .navbar {
+    background-color: #f8f9fa;
+    color: #000000;
+}
+
+body.light-mode .btn-secondary {
+    background-color: #6c757d;
+    color: #ffffff;
+}
+
+/* Dark mode */
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+body.dark-mode .navbar {
+    background-color: #1c1c1c;
+    color: #ffffff;
+}
+
+body.dark-mode .btn-secondary {
+    background-color: #343a40;
+    color: #ffffff;
+}
+
+body {
+    transition: background-color 0.3s, color 0.3s;
+}

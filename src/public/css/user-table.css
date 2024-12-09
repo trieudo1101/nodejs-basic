@@ -1,0 +1,22 @@
+.expense-table{
+  border: 3px;
+}
+
+.table-title {
+    display: flex;
+    justify-content: space-between;
+  }
+
+.table-title .btn-add {
+  height: 40px;
+}
+
+.input-group {
+  margin-right: 15px;
+}
+
+.input-group .form-control {
+  width: 60px;
+  height: 30px;
+  text-align: left;
+}

@@ -1,0 +1,8 @@
+.table-title {
+    display: flex;
+    justify-content: space-between;
+  }
+
+.table-title .btn-add {
+  height: 40px;
+}
