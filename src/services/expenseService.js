@@ -1,24 +1,24 @@
 import expenseRepository from "../repositories/expenseRepository.js";
-import FailedResponse from "../models/enumResponse.js";
-import client from "../configs/elasticsearchConnect.js";
+import FailedResponse from "../utils/enumResponse.js";
 
 class ExpenseService {
   createExpense = async (expenseData) => {
     const newExpense = await expenseRepository.insert(expenseData);
-    await expenseRepository.addToElasticsearch(newExpense);
     return newExpense;
   };
 
   getExpenseById = async (id) => {
-    const expense = await expenseRepository.selectById(id);
+    const expense = await expenseRepository.selectDetailExpense(id);
     if (!expense) {
       return FailedResponse.NOT_FOUND;
     }
     return expense;
   };
 
-  getExpenses = async () => {
-    const expenses = await expenseRepository.selectAll();
+  getExpenses = async (currentPage, pageSize) => {
+    const page = parseInt(currentPage, 10) || 1;
+    const size = parseInt(pageSize, 10) > 0 ? parseInt(pageSize, 10) : 10;
+    const expenses = await expenseRepository.selectExpenses(page, size);
     return expenses;
   };
 
@@ -52,18 +52,6 @@ class ExpenseService {
       return FailedResponse.DELETE_FAILED;
     }
     return affectedRows;
-  };
-
-  getExpenses_es = async () => {
-    const { body } = await client.search({
-      index: "expenses",
-      query: { match_all: {} },
-    });
-    return body.hits.hits.map((hit) => hit._source);
-  };
-
-  syncExpenses = async () => {
-    return await expenseRepository.syncToElastic(); // Gọi hàm đồng bộ
   };
 }
 
