@@ -1,18 +1,21 @@
 import Joi from "joi";
 
 const userCreateSchema = Joi.object({
-    fullname: Joi.string().required(),
-    email: Joi.string().required(),
-    username: Joi.string().required(),
-    password: Joi.string().required()
+  fullname: Joi.string().required(),
+  email: Joi.string().required(),
+  password: Joi.string().required(),
+  phoneNumber: Joi.string().optional(),
+  address: Joi.string().optional(),
+  image: Joi.string().optional(),
+  gender: Joi.number().optional(),
 });
 
-
 const userUpdateSchema = Joi.object({
-    fullname: Joi.string().optional(),
-    password: Joi.string().optional(),
-    phone: Joi.string().optional(),
-    isActive: Joi.boolean().optional()
+  id: Joi.string().required(),
+  fullname: Joi.string().optional(),
+  phoneNumber: Joi.string().optional(),
+  address: Joi.string().optional(),
+  image: Joi.string().optional(),
 }).min(1);
 
 export { userCreateSchema, userUpdateSchema };

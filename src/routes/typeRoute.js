@@ -1,10 +1,14 @@
 import express from "express";
 import validate from "../middlewares/validateMiddleware.js";
-import typeController from "../controllers/typeController.js";
+import { getTypes, postType } from "../controllers/typeController.js";
 import { typeCreateSchema } from "../schemas/typeSchema.js";
 
 const router = express.Router();
 
-router.post("/", validate(typeCreateSchema), typeController.postType);
+const typeRoutes = (app) => {
+  router.post("/post-type", validate(typeCreateSchema), postType);
 
-export default router;
+  return app.use("/types", router);
+};
+
+export default typeRoutes;

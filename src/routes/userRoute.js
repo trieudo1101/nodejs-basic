@@ -1,10 +1,33 @@
 import express from "express";
-import userController from "../controllers/userController.js";
+import {
+  getUserById,
+  getAllUsers,
+  postUser,
+  putUser,
+  deleteUser,
+  routeToUserCreate,
+} from "../controllers/userController.js";
+import validate from "../middlewares/validateMiddleware.js";
+import { userCreateSchema, userUpdateSchema } from "../schemas/userSchema.js";
 
 const router = express.Router();
 
-router.get("/:id", userController.getUserById);
-router.get("/", userController.getAllUsers);
-router.post("/", userController.createUser);
+const userRoutes = (app) => {
+  router.put("/:id", validate(userUpdateSchema), putUser);
 
-export default router;
+  //Navigate
+  router.get("/user-create", routeToUserCreate);
+
+  //Action
+  router.post("/put-user", validate(userUpdateSchema), putUser);
+  router.post("/post-user", validate(userCreateSchema), postUser);
+
+  //Render
+  router.get("/", getAllUsers);
+  router.get("/:id", getUserById);
+  router.get("/delete-user/:id", deleteUser);
+
+  return app.use("/users", router);
+};
+
+export default userRoutes;

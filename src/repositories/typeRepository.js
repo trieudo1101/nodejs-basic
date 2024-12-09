@@ -1,9 +1,13 @@
-import pool from "../configs/dbConnect.js";
+import db from "../models/index.js";
 import BaseRepository from "./baseRepository.js";
 
 class TypeRepository extends BaseRepository {
   constructor() {
-    super(pool, "types");
+    super(db.Type);
+  }
+
+  async selectAllTypes() {
+    return await this.model.findAll();
   }
 }
 
