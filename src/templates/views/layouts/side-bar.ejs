@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidebar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/css/side-bar.css" type="text/css">
+</head>
+
+<body>
+    <div class="d-flex">
+        <nav id="sidebar" class="sidebar bg-light">
+            <button id="toggleSidebar" class="btn btn-primary toggle-btn">☰</button>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link <%= currentTab === 'User' ? 'active' : '' %>" href="/users">
+                        <i class="fas fa-users"></i>
+                        <span>User</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <%= currentTab === 'Expense' ? 'active' : '' %>" href="/expenses">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        <span> Expense</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <%= currentTab === 'Category' ? 'active' : '' %>" href="/categories">
+                        <i class="fas fa-th-list"></i>
+                        <span>Category</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</body>
+
+</html>
